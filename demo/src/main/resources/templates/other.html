@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!-- 整合Security4使用
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"-->
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<tr th:each="maps:${map}">-->
+<!--    <td th:each="entry:${maps}" th:text="${entry.value.userId}"></td>-->
+<!--    <td th:each="entry:${maps}" th:text="${entry.value.userName}"></td>-->
+<!--    <td th:each="entry:${maps}" th:text="${entry.value.userAge}"></td>-->
+<!--</tr>-->
+<!--https://blog.csdn.net/wangwjtt/article/details/85334663-->
+
+<!--<td th:text="${en}"></td>--><table>
+    <tr th:each="en,idx :${studMap}">
+
+<!--        <td th:text="${idx.current.key}"></td>-->
+        <td th:text="${en.value}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script th:src="@{/js/jquery-3.4.1.js}"></script>
+<script>
+    $(function () {
+
+        // $.ajax({
+        //     type: 'get',
+        //     url: '/user',
+        //     data: {},
+        //     dataType: "json",
+        //     success: function (data) {
+        //         for (var idx in data){
+        //             alert(data[idx]);
+        //         }
+        //     }
+        // })
+    })
+
+    function del(id) {
+        $.ajax({
+            type: "delete",
+            url: "/del",
+            data: {id: id},
+            dataType: "text",
+            success: function (data) {
+                alert(data)
+                location.reload();
+            },
+            error: function () {
+                alert("ca")
+                location.reload();
+            }
+        })
+    }
+</script>
+
+<body>
+<h1>Index page | hello -> [[${session.userLogin.name}]]</h1>
+<hr>
+
+<table>
+    <tr>
+        <td>姓名</td>
+        <td>年龄</td>
+        <td>住址</td>
+        <td>操作</td>
+
+    </tr>
+    <tr th:each=" item,idx : ${session.stuList}">
+<!--        <td th:text="${idx.current.name}"></td>-->
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.age}"></td>
+        <td th:text="${item.address}"></td>
+        <td> <a th:href="@{'/update/'+${item.id}}">修改</a></td>
+        <td><a href="javascript:void(0)" th:onclick="del([[${item.id}]])">删除</a></td>
+    </tr>
+</table>
+
+
+
+<select>
+    <option th:value="${item.id}" th:each="item : ${session.stuList}">[[${item.name}]]</option>
+</select>
+</body>
+</html>
